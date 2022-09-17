@@ -26,11 +26,23 @@ player_to_words = {
 
 player_to_points = {}
 
-for player, words in player_to_words.items():
-    player_points = 0
-    for word in words:
-        player_points += score_word(word)
-    player_to_points[player] = player_points
 
+def update_point_totals():
+    for player, words in player_to_words.items():
+        player_points = 0
+        for word in words:
+            player_points += score_word(word)
+        player_to_points[player] = player_points
+
+
+update_point_totals()
+
+
+def player_word(player, word):
+    player_to_words[player].append(word)
+    update_point_totals()
+
+
+player_word('player1', 'skye')
 
 print(player_to_points)
